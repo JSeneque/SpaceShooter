@@ -8,17 +8,26 @@ public class PlayerShoot : MonoBehaviour
     [SerializeField]
     private float _firepointOffset = 0.8f;
 
+    [SerializeField]
+    private float _fireRate = 0.5f;
+
+    private float _canFire = -1f;
+
     // Update is called once per frame
     void Update()
     {
-        // if I hit the spacekey
-        // spawn gameobject
-
-        if (Input.GetKeyDown(KeyCode.Space))
+        if (Input.GetKeyDown(KeyCode.Space) && Time.time > _canFire)
         {
-            Vector3 firePoint = new Vector3(transform.position.x, transform.position.y + _firepointOffset, transform.position.z);
-
-            Instantiate(_laserPrefab, firePoint, Quaternion.identity);
+            Fire();
         }
+    }
+
+    private void Fire()
+    {
+        _canFire = Time.time + _fireRate;
+
+        Vector3 firePoint = new Vector3(transform.position.x, transform.position.y + _firepointOffset, transform.position.z);
+
+        Instantiate(_laserPrefab, firePoint, Quaternion.identity);
     }
 }
