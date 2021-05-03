@@ -9,6 +9,7 @@ public class PlayerShoot : MonoBehaviour
     private float _firepointOffset = 0.8f;
 
     [SerializeField]
+    [Range(0,5)]
     private float _fireRate = 0.5f;
 
     private float _canFire = -1f;
