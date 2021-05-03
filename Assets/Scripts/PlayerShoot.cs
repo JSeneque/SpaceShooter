@@ -1,5 +1,4 @@
 ﻿using UnityEngine;
-
 public class PlayerShoot : MonoBehaviour
 {
     [SerializeField]
@@ -14,7 +13,6 @@ public class PlayerShoot : MonoBehaviour
 
     private float _canFire = -1f;
 
-    // Update is called once per frame
     void Update()
     {
         if (Input.GetKeyDown(KeyCode.Space) && Time.time > _canFire)
