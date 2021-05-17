@@ -1,12 +1,15 @@
 ﻿using System;
+using System.Collections;
 using UnityEngine;
 
 public class Player : MonoBehaviour
 {
-    [SerializeField]
-    private int _lives = 3;
-
+    [SerializeField] private int _lives = 3;
+    [SerializeField] private GameObject _shieldVisualiser;
+    
     private SpawnManager _spawnManager;
+    private bool _isShieldActive;
+    
 
     private void Start()
     {
@@ -19,11 +22,25 @@ public class Player : MonoBehaviour
 
     public void Damage()
     {
-        _lives--;
-        if(_lives <= 0)
+        if (!_isShieldActive)
         {
-            _spawnManager.OnPlayerDeath();
-            Destroy(this.gameObject);
+            _lives--;
+            if(_lives <= 0)
+            {
+                _spawnManager.OnPlayerDeath();
+                Destroy(this.gameObject);
+            }  
         }
+        else
+        {
+            _isShieldActive = false;
+            _shieldVisualiser.SetActive(false);
+        }
+    }
+
+    public void ShieldOn()
+    {
+        _isShieldActive = true;
+        _shieldVisualiser.SetActive(true);
     }
 }

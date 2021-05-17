@@ -51,6 +51,11 @@ public class PowerUp : MonoBehaviour
                     break;
                 case PowerUpType.Shield:
                     Debug.Log("Collected Shield Power Up");
+                    Player player = other.GetComponent<Player>();
+                    if (player != null)
+                    {
+                        player.ShieldOn();
+                    }
                     break;
                 default:
                     Debug.Log("Default value");
