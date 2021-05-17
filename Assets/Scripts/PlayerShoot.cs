@@ -2,16 +2,10 @@
 using UnityEngine;
 public class PlayerShoot : MonoBehaviour
 {
-    [SerializeField]
-    private GameObject _laserPrefab;
-
-    [SerializeField]
-    private GameObject _tripleShot;
-
-    [SerializeField]
-    private float _firepointOffset = 1.07f;
-
-    [SerializeField]
+    [SerializeField] private GameObject _laserPrefab;
+    [SerializeField] private GameObject _tripleShot;
+    [SerializeField] private float _firepointOffset = 1.07f;
+    [SerializeField] 
     [Range(0,5)]
     private float _fireRate = 0.5f;
 

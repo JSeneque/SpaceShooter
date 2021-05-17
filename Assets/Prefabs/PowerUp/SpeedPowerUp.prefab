@@ -9,11 +9,11 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 4620861554983339468}
+  - component: {fileID: 6766697650986022399}
   - component: {fileID: 4620861554983339471}
   - component: {fileID: 4620861554983339470}
   - component: {fileID: 1546988727047643155}
   - component: {fileID: 4123692515156373716}
-  - component: {fileID: 6766697650986022399}
   m_Layer: 0
   m_Name: SpeedPowerUp
   m_TagString: Untagged
@@ -35,6 +35,21 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &6766697650986022399
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4620861554983339465}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f92f74a5bb529cc439edb9d8f61e06f4, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  powerUp: 1
+  _moveSpeed: 3
+  _lowerBound: -5.5
 --- !u!212 &4620861554983339471
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -141,17 +156,3 @@ Rigidbody2D:
   m_SleepingMode: 1
   m_CollisionDetection: 0
   m_Constraints: 0
---- !u!114 &6766697650986022399
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 4620861554983339465}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: f92f74a5bb529cc439edb9d8f61e06f4, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  _moveSpeed: 3
-  _lowerBound: -5.5

@@ -1,12 +1,13 @@
-﻿using UnityEngine;
+﻿using System.Collections;
+using UnityEngine;
 
 public class PlayerMovement : MonoBehaviour
 {
-    [SerializeField]
-    private Vector3 _startPosition;
+    [SerializeField] private Vector3 _startPosition;
+    [SerializeField] private float _moveSpeed = 3f;
+    [SerializeField] private bool _isSpeedBoostActive;
 
-    [SerializeField]
-    private float _moveSpeed = 3f;
+    private float _speedMultiplier = 2.0f;
 
     void Start()
     {
@@ -26,7 +27,15 @@ public class PlayerMovement : MonoBehaviour
 
         Vector3 direction = new Vector3(horizontalInput, verticalInput, 0 );
 
-        transform.Translate(direction * _moveSpeed * Time.deltaTime);
+        if (_isSpeedBoostActive)
+        {
+            transform.Translate(direction * _moveSpeed * _speedMultiplier * Time.deltaTime);
+        }
+        else
+        {
+            transform.Translate(direction * _moveSpeed  * Time.deltaTime);
+        }
+        
     }
 
     private void CheckBounds()
@@ -42,4 +51,18 @@ public class PlayerMovement : MonoBehaviour
             transform.position = new Vector3(-9.37f, transform.position.y, 0);
         }
     }
+
+    public void SpeedBoost()
+    {
+        _isSpeedBoostActive = true;
+        StartCoroutine(SpeedBoostRoutine());
+    }
+
+    IEnumerator SpeedBoostRoutine()
+    {
+        yield return new WaitForSeconds(5.0f);
+
+        _isSpeedBoostActive = false;
+    }
+    
 }
