@@ -28,41 +28,41 @@ public class PowerUp : MonoBehaviour
 
     }
 
-    private void OnTriggerEnter2D(Collider2D other)
+private void OnTriggerEnter2D(Collider2D other)
+{
+    if(other.tag == "Player")
     {
-        if(other.tag == "Player")
+        switch (powerUp)
         {
-            switch (powerUp)
-            {
-                case PowerUpType.TripleShot:
-                    PlayerShoot shootScript = other.GetComponent<PlayerShoot>();
-                    if (shootScript != null)
-                    {
-                        shootScript.TripleShotActive();
-                    }
-                    break;
-                case PowerUpType.Speed:
-                    Debug.Log("Collect Speed Power Up");
-                    PlayerMovement movementScript = other.GetComponent<PlayerMovement>();
-                    if (movementScript != null)
-                    {
-                        movementScript.SpeedBoost();
-                    }
-                    break;
-                case PowerUpType.Shield:
-                    Debug.Log("Collected Shield Power Up");
-                    Player player = other.GetComponent<Player>();
-                    if (player != null)
-                    {
-                        player.ShieldOn();
-                    }
-                    break;
-                default:
-                    Debug.Log("Default value");
-                    break;
-            }
-
-            Destroy(this.gameObject);
+            case PowerUpType.TripleShot:
+                PlayerShoot shootScript = other.GetComponent<PlayerShoot>();
+                if (shootScript != null)
+                {
+                    shootScript.TripleShotActive();
+                }
+                break;
+            case PowerUpType.Speed:
+                Debug.Log("Collect Speed Power Up");
+                PlayerMovement movementScript = other.GetComponent<PlayerMovement>();
+                if (movementScript != null)
+                {
+                    movementScript.SpeedBoost();
+                }
+                break;
+            case PowerUpType.Shield:
+                Debug.Log("Collected Shield Power Up");
+                Player player = other.GetComponent<Player>();
+                if (player != null)
+                {
+                    player.ShieldOn();
+                }
+                break;
+            default:
+                Debug.Log("Default value");
+                break;
         }
+
+        Destroy(this.gameObject);
     }
+}
 }

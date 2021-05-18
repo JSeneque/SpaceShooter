@@ -10,7 +10,7 @@ public class SpawnManager : MonoBehaviour
     [SerializeField] private float _powerSpawnRateMin = 7.0f;
     [SerializeField] private float _powerSpawnRateMax = 10.0f;
 
-    [SerializeField] private PowerUpType powerUp;
+    //[SerializeField] private PowerUpType powerUp;
 
     private bool _stopSpawning = false;
 
