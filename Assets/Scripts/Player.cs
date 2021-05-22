@@ -7,6 +7,8 @@ public class Player : MonoBehaviour
     [SerializeField] private int _lives = 3;
     [SerializeField] private GameObject _shieldVisualiser;
     [SerializeField] private int _score;
+    [SerializeField] private GameObject _leftEngine;
+    [SerializeField] private GameObject _rightEngine;
     
     private SpawnManager _spawnManager;
     private bool _isShieldActive;
@@ -33,6 +35,18 @@ public class Player : MonoBehaviour
         if (!_isShieldActive)
         {
             _lives--;
+            
+            // if lives is 1
+            // enable one engine
+            // else if live is 1
+            // enable other engine
+            if (_lives == 1)
+            {
+                _leftEngine.SetActive(true);
+            } else if (_lives == 2)
+            {
+                _rightEngine.SetActive(true);
+            }
             
             _uIManager.UpdateLives(_lives);
             
