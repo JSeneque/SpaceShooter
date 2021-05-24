@@ -15,6 +15,7 @@ public class PowerUp : MonoBehaviour
     [SerializeField] private PowerUpType powerUp;
     [SerializeField] private float _moveSpeed = 3.0f;
     [SerializeField] private float _lowerBound = -5.5f;
+    [SerializeField] private AudioClip _audioClip;
 
     // Update is called once per frame
     void Update()
@@ -28,41 +29,42 @@ public class PowerUp : MonoBehaviour
 
     }
 
-private void OnTriggerEnter2D(Collider2D other)
-{
-    if(other.tag == "Player")
+    private void OnTriggerEnter2D(Collider2D other)
     {
-        switch (powerUp)
+        if(other.tag == "Player")
         {
-            case PowerUpType.TripleShot:
-                PlayerShoot shootScript = other.GetComponent<PlayerShoot>();
-                if (shootScript != null)
-                {
-                    shootScript.TripleShotActive();
-                }
-                break;
-            case PowerUpType.Speed:
-                Debug.Log("Collect Speed Power Up");
-                PlayerMovement movementScript = other.GetComponent<PlayerMovement>();
-                if (movementScript != null)
-                {
-                    movementScript.SpeedBoost();
-                }
-                break;
-            case PowerUpType.Shield:
-                Debug.Log("Collected Shield Power Up");
-                Player player = other.GetComponent<Player>();
-                if (player != null)
-                {
-                    player.ShieldOn();
-                }
-                break;
-            default:
-                Debug.Log("Default value");
-                break;
-        }
+            switch (powerUp)
+            {
+                case PowerUpType.TripleShot:
+                    PlayerShoot shootScript = other.GetComponent<PlayerShoot>();
+                    if (shootScript != null)
+                    {
+                        shootScript.TripleShotActive();
+                    }
+                    break;
+                case PowerUpType.Speed:
+                    Debug.Log("Collect Speed Power Up");
+                    PlayerMovement movementScript = other.GetComponent<PlayerMovement>();
+                    if (movementScript != null)
+                    {
+                        movementScript.SpeedBoost();
+                    }
+                    break;
+                case PowerUpType.Shield:
+                    Debug.Log("Collected Shield Power Up");
+                    Player player = other.GetComponent<Player>();
+                    if (player != null)
+                    {
+                        player.ShieldOn();
+                    }
+                    break;
+                default:
+                    Debug.Log("Default value");
+                    break;
+            }
 
-        Destroy(this.gameObject);
+            AudioSource.PlayClipAtPoint(_audioClip, transform.position);
+            Destroy(this.gameObject);
+        }
     }
-}
 }

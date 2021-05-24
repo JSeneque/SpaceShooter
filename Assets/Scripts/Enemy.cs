@@ -4,16 +4,18 @@ using Random = UnityEngine.Random;
 
 public class Enemy : MonoBehaviour
 {
-    [SerializeField]
-    private float _moveSpeed = 4.0f;
-
+    [SerializeField] private float _moveSpeed = 4.0f;
+    [SerializeField] private AudioClip _explosionAudioClip;
+    
     private Player _player;
     private Animator _animator;
+    private AudioSource _audioSource;
 
     private void Start()
     {
         _player = GameObject.Find("Player").GetComponent<Player>();
         _animator = GetComponentInChildren<Animator>();
+        _audioSource = GetComponent<AudioSource>();
         
         if (_player == null)
         {
@@ -23,6 +25,15 @@ public class Enemy : MonoBehaviour
         if (_animator == null)
         {
             Debug.LogError("Enemy GFX Animator is NULL");
+        }
+
+        if (_audioSource == null)
+        {
+            Debug.LogError("Audio Source is NULL on Enemy");
+        }
+        else
+        {
+            _audioSource.clip = _explosionAudioClip;
         }
     }
 
@@ -68,6 +79,7 @@ public class Enemy : MonoBehaviour
     {
         _animator.SetTrigger("OnEnemyDeath");
         _moveSpeed = 0.5f;
+        _audioSource.Play();
         Destroy(this.gameObject, 2.8f);
     }
 }

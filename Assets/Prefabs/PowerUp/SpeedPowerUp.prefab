@@ -50,6 +50,7 @@ MonoBehaviour:
   powerUp: 1
   _moveSpeed: 1.5
   _lowerBound: -5.5
+  _audioClip: {fileID: 8300000, guid: 5ee343246919d2b4bba63ae629e95494, type: 3}
 --- !u!212 &4620861554983339471
 SpriteRenderer:
   m_ObjectHideFlags: 0

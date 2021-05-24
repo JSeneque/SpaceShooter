@@ -9,11 +9,11 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1047565733138164934}
-  - component: {fileID: 8515176984091332080}
   - component: {fileID: 6897512342185445234}
   - component: {fileID: 9117389939372908178}
   - component: {fileID: 2287233841802091037}
   - component: {fileID: 6327971062587773441}
+  - component: {fileID: 602663380256778845}
   m_Layer: 0
   m_Name: ShieldPowerUp
   m_TagString: Untagged
@@ -35,21 +35,6 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &8515176984091332080
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 8428553730007022105}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: f92f74a5bb529cc439edb9d8f61e06f4, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  powerUp: 2
-  _moveSpeed: 1.5
-  _lowerBound: -5.5
 --- !u!212 &6897512342185445234
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -156,3 +141,19 @@ CircleCollider2D:
   m_Offset: {x: 0, y: 0}
   serializedVersion: 2
   m_Radius: 1.5
+--- !u!114 &602663380256778845
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8428553730007022105}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f92f74a5bb529cc439edb9d8f61e06f4, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  powerUp: 2
+  _moveSpeed: 1.5
+  _lowerBound: -5.5
+  _audioClip: {fileID: 8300000, guid: 5ee343246919d2b4bba63ae629e95494, type: 3}
