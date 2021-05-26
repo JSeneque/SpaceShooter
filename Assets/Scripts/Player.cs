@@ -36,22 +36,23 @@ public class Player : MonoBehaviour
         if (!_isShieldActive)
         {
             _lives--;
-            
-            // if lives is 1
-            // enable one engine
-            // else if live is 1
-            // enable other engine
-            if (_lives == 1)
+
+            if (_lives < 0)
+            {
+                _lives = 0;
+            } 
+            else if (_lives == 1)
             {
                 _leftEngine.SetActive(true);
-            } else if (_lives == 2)
+            } 
+            else if (_lives == 2)
             {
                 _rightEngine.SetActive(true);
             }
             
             _uIManager.UpdateLives(_lives);
             
-            if(_lives <= 0)
+            if(_lives == 0)
             {
                 _spawnManager.OnPlayerDeath();
                 Instantiate(_explosionPrefab, transform.position, Quaternion.identity);

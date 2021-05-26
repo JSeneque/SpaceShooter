@@ -32,7 +32,7 @@ public class SpawnManager : MonoBehaviour
         
         while (_stopSpawning == false)
         {
-            Vector3 newPosition = new Vector3(Random.Range(-8.0f, 8.0f), 10.0f, 0);
+            Vector3 newPosition = new Vector3(Random.Range(-8.0f, 8.0f), 7.0f, 0);
 
             GameObject newEnemy = Instantiate(_enemyPrefab, newPosition, Quaternion.identity);
             newEnemy.transform.parent = _enemyContainer.transform;

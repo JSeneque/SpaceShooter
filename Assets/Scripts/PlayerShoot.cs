@@ -54,7 +54,8 @@ public class PlayerShoot : MonoBehaviour
         else
         {
             firePoint = new Vector3(transform.position.x, transform.position.y + _firepointOffset, transform.position.z);
-            Instantiate(_laserPrefab, firePoint, Quaternion.identity);
+            GameObject _laser = Instantiate(_laserPrefab, firePoint, Quaternion.identity);
+            //_laser.GetComponent<Laser>().
         }
         _audioSource.Play();
     }
