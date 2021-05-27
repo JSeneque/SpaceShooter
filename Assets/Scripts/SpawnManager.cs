@@ -7,8 +7,8 @@ public class SpawnManager : MonoBehaviour
     [SerializeField] private GameObject _enemyPrefab;
     [SerializeField] private GameObject[] _powerUps;
     [SerializeField] private float _enemySpawnRate = 5.0f;
-    [SerializeField] private float _powerSpawnRateMin = 7.0f;
-    [SerializeField] private float _powerSpawnRateMax = 10.0f;
+    [SerializeField] private float _powerSpawnRateMin = 20.0f;
+    [SerializeField] private float _powerSpawnRateMax = 30.0f;
 
     //[SerializeField] private PowerUpType powerUp;
 
