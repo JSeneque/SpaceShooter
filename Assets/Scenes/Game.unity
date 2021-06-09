@@ -1533,8 +1533,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _startPosition: {x: 0, y: -2.15, z: 0}
-  _moveSpeed: 2
+  _moveSpeed: 5
   _isSpeedBoostActive: 0
+  _thrusterMultiplier: 1.5
 --- !u!4 &1260497861
 Transform:
   m_ObjectHideFlags: 0
@@ -2462,7 +2463,7 @@ MonoBehaviour:
   m_MinValue: 0
   m_MaxValue: 10
   m_WholeNumbers: 0
-  m_Value: 0
+  m_Value: 10
   m_OnValueChanged:
     m_PersistentCalls:
       m_Calls: []
