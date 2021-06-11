@@ -1740,7 +1740,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _slider: {fileID: 1918711463}
-  _thrusterRate: 4
+  _regenerateRate: 4
 --- !u!1 &1402596377
 GameObject:
   m_ObjectHideFlags: 0
@@ -2480,7 +2480,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _slider: {fileID: 1918711463}
-  _thrusterRate: 4
+  _regenerateRate: 4
 --- !u!1 &2025735392
 GameObject:
   m_ObjectHideFlags: 0

@@ -1,13 +1,10 @@
-﻿using System;
-using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
+﻿using UnityEngine;
 using UnityEngine.UI;
 
 public class ThrusterBar : MonoBehaviour
 {
     [SerializeField] private Slider _slider;
-    [SerializeField] private float _thrusterRate = 4f;
+    [SerializeField] private float _regenerateRate = 4f;
 
     private bool _isThrusting = false;
     
@@ -24,7 +21,7 @@ public class ThrusterBar : MonoBehaviour
         }
         else
         {
-            _slider.value -= Time.deltaTime * _thrusterRate;
+            _slider.value -= Time.deltaTime * _regenerateRate;
             if (_slider.value <= 0)
             {
                 _isThrusting = false;
@@ -40,7 +37,7 @@ public class ThrusterBar : MonoBehaviour
         }
     }
 
-    public void SetMaxThruster(int amount)
+    private void SetMaxThruster(int amount)
     {
         _slider.maxValue = amount;
         _slider.value = amount;
