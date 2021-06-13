@@ -17,7 +17,6 @@ public class UIManager : MonoBehaviour
 
     private GameManager _gameManager;
 
-    private int ammoAmount = 0;
     // Start is called before the first frame update
     void Start()
     {
@@ -67,16 +66,8 @@ public class UIManager : MonoBehaviour
         }
     }
 
-    public void UpdateAmmoAmount(int amount)
+    public void UpdateAmmoText(int ammo)
     {
-        ammoAmount += amount;
-        
-        if (ammoAmount < 0)
-        {
-            ammoAmount = 0;
-        }
-
-        _ammoText.text = ammoAmount.ToString();
+        _ammoText.text = ammo.ToString();
     }
-
 }

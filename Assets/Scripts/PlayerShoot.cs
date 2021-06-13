@@ -16,6 +16,7 @@ public class PlayerShoot : MonoBehaviour
     private float _canFire = -1f;
     private bool _isTripleShotActive = false;
     private AudioSource _audioSource;
+    private Player _player;
 
     private void Start()
     {
@@ -29,12 +30,19 @@ public class PlayerShoot : MonoBehaviour
         {
             _audioSource.clip = _laserSFX;
         }
-        
+
+        _player = GetComponent<Player>();
+
+        if (_player == null)
+        {
+            Debug.LogError("Player script is missing!");
+        }
+
     }
 
     void Update()
     {
-        if (Input.GetKeyDown(KeyCode.Space) && Time.time > _canFire)
+        if (Input.GetKeyDown(KeyCode.Space) && Time.time > _canFire && _player.GetAmmoCount() > 0)
         {
             Fire();
         }
@@ -45,17 +53,19 @@ public class PlayerShoot : MonoBehaviour
         _canFire = Time.time + _fireRate;
 
         Vector3 firePoint;
-
+        
         if (_isTripleShotActive)
         {
             firePoint = new Vector3(transform.position.x, transform.position.y, transform.position.z);
             Instantiate(_tripleShot, firePoint, Quaternion.identity);
+            _player.UpdateAmmo(-1);
         }
         else
         {
-            firePoint = new Vector3(transform.position.x, transform.position.y + _firepointOffset, transform.position.z);
+            firePoint = new Vector3(transform.position.x, transform.position.y + _firepointOffset,
+                transform.position.z);
             GameObject _laser = Instantiate(_laserPrefab, firePoint, Quaternion.identity);
-            //_laser.GetComponent<Laser>().
+            _player.UpdateAmmo(-1);
         }
         _audioSource.Play();
     }

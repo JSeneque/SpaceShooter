@@ -14,6 +14,7 @@ public class Player : MonoBehaviour
     private SpawnManager _spawnManager;
     private bool _isShieldActive;
     private UIManager _uIManager;
+    private int _ammoCount;
     
 
     private void Start()
@@ -29,6 +30,8 @@ public class Player : MonoBehaviour
         {
             Debug.LogError("The UI Manager is NULL");
         }
+
+        UpdateAmmo(15);
     }
 
     public void Damage()
@@ -78,5 +81,22 @@ public class Player : MonoBehaviour
     {
         _score += amount;
         _uIManager.UpdateScoreText(_score);
+    }
+
+    public void UpdateAmmo(int amount)
+    {
+        _ammoCount += amount;
+
+        if (_ammoCount < 0)
+        {
+            _ammoCount = 0;
+        }
+        
+        _uIManager.UpdateAmmoText(_ammoCount);
+    }
+
+    public int GetAmmoCount()
+    {
+        return _ammoCount;
     }
 }
