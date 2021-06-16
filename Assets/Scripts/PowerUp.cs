@@ -7,7 +7,8 @@ public enum PowerUpType
 {
     TripleShot,
     Speed,
-    Shield
+    Shield,
+    Ammo
 };
 
 public class PowerUp : MonoBehaviour
@@ -33,38 +34,58 @@ public class PowerUp : MonoBehaviour
     {
         if(other.tag == "Player")
         {
-            switch (powerUp)
+            Player player = other.GetComponent<Player>();
+            if (player == null)
             {
-                case PowerUpType.TripleShot:
-                    PlayerShoot shootScript = other.GetComponent<PlayerShoot>();
-                    if (shootScript != null)
-                    {
-                        shootScript.TripleShotActive();
-                    }
-                    break;
-                case PowerUpType.Speed:
-                    Debug.Log("Collect Speed Power Up");
-                    PlayerMovement movementScript = other.GetComponent<PlayerMovement>();
-                    if (movementScript != null)
-                    {
-                        movementScript.SpeedBoost();
-                    }
-                    break;
-                case PowerUpType.Shield:
-                    Debug.Log("Collected Shield Power Up");
-                    Player player = other.GetComponent<Player>();
-                    if (player != null)
-                    {
-                        player.ShieldOn();
-                    }
-                    break;
-                default:
-                    Debug.Log("Default value");
-                    break;
+                Debug.LogError("Player script is missing!");
             }
+            else
+            {
+                switch (powerUp)
+                {
+                    case PowerUpType.TripleShot:
+                        PlayerShoot shootScript = other.GetComponent<PlayerShoot>();
+                        if (shootScript != null)
+                        {
+                            shootScript.TripleShotActive();
+                        }
 
-            AudioSource.PlayClipAtPoint(_audioClip, transform.position);
-            Destroy(this.gameObject);
+                        break;
+                    case PowerUpType.Speed:
+                        Debug.Log("Collect Speed Power Up");
+                        PlayerMovement movementScript = other.GetComponent<PlayerMovement>();
+                        if (movementScript != null)
+                        {
+                            movementScript.SpeedBoost();
+                        }
+
+                        break;
+                    case PowerUpType.Shield:
+                        Debug.Log("Collected Shield Power Up");
+                        //Player player = other.GetComponent<Player>();
+                        if (player != null)
+                        {
+                            player.ShieldOn();
+                        }
+
+                        break;
+                    case PowerUpType.Ammo:
+                        Debug.Log("Collected Ammo Power Up");
+
+                        if (player != null)
+                        {
+                            player.UpdateAmmo(15);
+                        }
+
+                        break;
+                    default:
+                        Debug.Log("Default value");
+                        break;
+                }
+
+                AudioSource.PlayClipAtPoint(_audioClip, transform.position);
+                Destroy(this.gameObject);
+            }
         }
     }
 }
