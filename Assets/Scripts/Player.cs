@@ -40,21 +40,8 @@ public class Player : MonoBehaviour
         {
             _lives--;
 
-            if (_lives < 0)
-            {
-                _lives = 0;
-            } 
-            else if (_lives == 1)
-            {
-                _leftEngine.SetActive(true);
-            } 
-            else if (_lives == 2)
-            {
-                _rightEngine.SetActive(true);
-            }
-            
-            _uIManager.UpdateLives(_lives);
-            
+            UpdateLiveUI();
+
             if(_lives == 0)
             {
                 _spawnManager.OnPlayerDeath();
@@ -98,5 +85,40 @@ public class Player : MonoBehaviour
     public int GetAmmoCount()
     {
         return _ammoCount;
+    }
+
+    public void Heal()
+    {
+        if (_lives < 3)
+        {
+            _lives++;
+        }
+
+        UpdateLiveUI();
+    }
+
+    private void UpdateLiveUI()
+    {
+        if (_lives < 0)
+        {
+            _lives = 0;
+        } 
+        else if (_lives == 1)
+        {
+            _leftEngine.SetActive(true);
+            _rightEngine.SetActive(true);
+        } 
+        else if (_lives == 2)
+        {
+            _leftEngine.SetActive(true);
+            _rightEngine.SetActive(false);
+        }
+        else if (_lives == 3)
+        {
+            _leftEngine.SetActive(false);
+            _rightEngine.SetActive(false);
+        }
+            
+        _uIManager.UpdateLives(_lives);
     }
 }

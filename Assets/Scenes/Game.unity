@@ -1704,7 +1704,7 @@ Transform:
   - {fileID: 1164272234}
   - {fileID: 2037631377}
   m_Father: {fileID: 0}
-  m_RootOrder: 3
+  m_RootOrder: 4
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!61 &1260497862
 BoxCollider2D:
@@ -2931,6 +2931,7 @@ MonoBehaviour:
   - {fileID: 4620861554983339465, guid: ba2e7ee94ff69184f94a4f2abe3b4bff, type: 3}
   - {fileID: 8428553730007022105, guid: db08cb5280191a14c8bf966870d5ce43, type: 3}
   - {fileID: 8428553730007022105, guid: ac024a3f13e1b3043acb22943ad8abaf, type: 3}
+  - {fileID: 8428553730007022105, guid: 1842cc98788c1674f9ae76466aad0232, type: 3}
   _enemySpawnRate: 8
   _powerSpawnRateMin: 10
   _powerSpawnRateMax: 20
@@ -3336,7 +3337,7 @@ PrefabInstance:
     - target: {fileID: 1299766869075715906, guid: a2ba9adb7546a6942be822559201e389,
         type: 3}
       propertyPath: m_RootOrder
-      value: 4
+      value: 3
       objectReference: {fileID: 0}
     - target: {fileID: 1299766869075715906, guid: a2ba9adb7546a6942be822559201e389,
         type: 3}

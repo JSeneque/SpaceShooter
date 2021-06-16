@@ -8,7 +8,8 @@ public enum PowerUpType
     TripleShot,
     Speed,
     Shield,
-    Ammo
+    Ammo,
+    Health
 };
 
 public class PowerUp : MonoBehaviour
@@ -75,6 +76,15 @@ public class PowerUp : MonoBehaviour
                         if (player != null)
                         {
                             player.UpdateAmmo(15);
+                        }
+
+                        break;
+                    case PowerUpType.Health:
+                        Debug.Log("Collected Health Power Up");
+
+                        if (player != null)
+                        {
+                            player.Heal();
                         }
 
                         break;
