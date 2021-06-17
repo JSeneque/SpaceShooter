@@ -40,7 +40,7 @@ public class Player : MonoBehaviour
         {
             _lives--;
 
-            UpdateLiveUI();
+            UpdateShipDamage();
 
             if(_lives == 0)
             {
@@ -54,6 +54,7 @@ public class Player : MonoBehaviour
             _isShieldActive = false;
             _shieldVisualiser.SetActive(false);
         }
+        _uIManager.UpdateLives(_lives);
     }
 
     public void ShieldOn()
@@ -94,10 +95,11 @@ public class Player : MonoBehaviour
             _lives++;
         }
 
-        UpdateLiveUI();
+        UpdateShipDamage();
+        _uIManager.UpdateLives(_lives);
     }
 
-    private void UpdateLiveUI()
+    private void UpdateShipDamage()
     {
         if (_lives < 0)
         {
@@ -118,7 +120,5 @@ public class Player : MonoBehaviour
             _leftEngine.SetActive(false);
             _rightEngine.SetActive(false);
         }
-            
-        _uIManager.UpdateLives(_lives);
     }
 }
