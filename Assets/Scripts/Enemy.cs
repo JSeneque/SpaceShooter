@@ -14,6 +14,7 @@ public class Enemy : MonoBehaviour
     private float _fireRate = 3.0f;
     private float _canFire = -1.0f;
     private bool _isDead;
+    private bool _targetlocked = false;
 
     private void Start()
     {
@@ -95,6 +96,17 @@ public class Enemy : MonoBehaviour
             }
             OnEnemyDestroyAnimation();
         }
+        
+        if(other.tag == "Heat Seeker")
+        {
+            Destroy(other);
+            // add 10 to the score
+            if (_player != null)
+            {
+                _player.AddScore(10);
+            }
+            //OnEnemyDestroyAnimation();
+        }
 
     }
     
@@ -106,5 +118,15 @@ public class Enemy : MonoBehaviour
         _audioSource.Play();
         Destroy(GetComponent<Collider2D>());
         Destroy(this.gameObject, 2.8f);
+    }
+
+    public void LockOnEnemy()
+    {
+        _targetlocked = true;
+    }
+
+    public bool IsEnemyLockedOn()
+    {
+        return _targetlocked;
     }
 }

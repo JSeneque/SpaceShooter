@@ -9,7 +9,8 @@ public enum PowerUpType
     Speed,
     Shield,
     Ammo,
-    Health
+    Health,
+    HeatSeeker
 };
 
 public class PowerUp : MonoBehaviour
@@ -85,6 +86,14 @@ public class PowerUp : MonoBehaviour
                         if (player != null)
                         {
                             player.Heal();
+                        }
+
+                        break;
+                    case PowerUpType.HeatSeeker:
+                        shootScript = other.GetComponent<PlayerShoot>();
+                        if (shootScript != null)
+                        {
+                            shootScript.HeatSeekerActive();
                         }
 
                         break;

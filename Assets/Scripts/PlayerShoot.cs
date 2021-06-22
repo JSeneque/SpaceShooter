@@ -6,6 +6,7 @@ public class PlayerShoot : MonoBehaviour
 {
     [SerializeField] private GameObject _laserPrefab;
     [SerializeField] private GameObject _tripleShot;
+    [SerializeField] private GameObject _heatSeekerPrefab;
     [SerializeField] private float _firepointOffset = 1.07f;
     [SerializeField] 
     [Range(0,5)]
@@ -15,6 +16,7 @@ public class PlayerShoot : MonoBehaviour
     
     private float _canFire = -1f;
     private bool _isTripleShotActive = false;
+    private bool _isHeatSeekerActive = false;
     private AudioSource _audioSource;
     private Player _player;
 
@@ -60,6 +62,12 @@ public class PlayerShoot : MonoBehaviour
             Instantiate(_tripleShot, firePoint, Quaternion.identity);
             _player.UpdateAmmo(-1);
         }
+        else if (_isHeatSeekerActive)
+        {
+            firePoint = new Vector3(transform.position.x, transform.position.y + _firepointOffset, transform.position.z);
+            GameObject _laser = Instantiate(_heatSeekerPrefab, firePoint, Quaternion.identity);
+            //_player.UpdateAmmo(-1);
+        }
         else
         {
             firePoint = new Vector3(transform.position.x, transform.position.y + _firepointOffset,
@@ -73,17 +81,23 @@ public class PlayerShoot : MonoBehaviour
     public void TripleShotActive()
     {
         _isTripleShotActive = true;
-        StartCoroutine(TripleShotCooldownRoutine());
+        StartCoroutine(PowerUpCoolDownRoutine(_isTripleShotActive));
+    }
+    
+    public void HeatSeekerActive()
+    {
+        _isHeatSeekerActive = true;
+        StartCoroutine(PowerUpCoolDownRoutine(_isHeatSeekerActive));
     }
 
     // IEnumerator TripleShotPowerDownRoutine
     // wait 5 second
     // set te triple shot to false
 
-    IEnumerator TripleShotCooldownRoutine()
+    IEnumerator PowerUpCoolDownRoutine(bool powerUp)
     {
         yield return new WaitForSeconds(5.0f);
 
-        _isTripleShotActive = false;
+        powerUp = false;
     }
 }
