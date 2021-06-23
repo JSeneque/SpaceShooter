@@ -13,7 +13,7 @@ public class HeatSeeker : MonoBehaviour
     [SerializeField] private float _rightBounds = 10f;
     [SerializeField] private float angularSpeed = 360f;
     
-    private WaitForSeconds heatSeekUpdate = new WaitForSeconds(2f);
+    private WaitForSeconds heatSeekUpdate = new WaitForSeconds(0.5f);
     private Collider2D[] enemies = new Collider2D[25];
     private float nearestEnemyDistance;
     private Enemy nearestEnemy;
