@@ -15,8 +15,8 @@ public class PlayerShoot : MonoBehaviour
     [SerializeField] private AudioClip _laserSFX;
     
     private float _canFire = -1f;
-    private bool _isTripleShotActive = false;
-    private bool _isHeatSeekerActive = false;
+    public bool _isTripleShotActive = false;
+    public bool _isHeatSeekerActive = false;
     private AudioSource _audioSource;
     private Player _player;
 
@@ -81,23 +81,30 @@ public class PlayerShoot : MonoBehaviour
     public void TripleShotActive()
     {
         _isTripleShotActive = true;
-        StartCoroutine(PowerUpCoolDownRoutine(_isTripleShotActive));
+        StartCoroutine(TripleShootPowerUpCoolDownRoutine(_isTripleShotActive));
     }
     
     public void HeatSeekerActive()
     {
         _isHeatSeekerActive = true;
-        StartCoroutine(PowerUpCoolDownRoutine(_isHeatSeekerActive));
+        StartCoroutine(HeatSeekerPowerUpCoolDownRoutine(_isHeatSeekerActive));
     }
 
     // IEnumerator TripleShotPowerDownRoutine
     // wait 5 second
     // set te triple shot to false
 
-    IEnumerator PowerUpCoolDownRoutine(bool powerUp)
+    IEnumerator TripleShootPowerUpCoolDownRoutine(bool powerUp)
     {
         yield return new WaitForSeconds(5.0f);
 
-        powerUp = false;
+        _isTripleShotActive = false;
+    }
+    
+    IEnumerator HeatSeekerPowerUpCoolDownRoutine(bool powerUp)
+    {
+        yield return new WaitForSeconds(5.0f);
+
+        _isHeatSeekerActive = false;
     }
 }

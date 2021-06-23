@@ -394,7 +394,7 @@ RectTransform:
   - {fileID: 1918711462}
   - {fileID: 1365727973}
   m_Father: {fileID: 0}
-  m_RootOrder: 9
+  m_RootOrder: 8
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 0, y: 0}
@@ -1893,6 +1893,8 @@ MonoBehaviour:
   _firepointOffset: 1.07
   _fireRate: 0.15
   _laserSFX: {fileID: 8300000, guid: 75676f361bdfeaf41a46623e95df3dbc, type: 3}
+  _isTripleShotActive: 0
+  _isHeatSeekerActive: 0
 --- !u!114 &1260497860
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1926,7 +1928,7 @@ Transform:
   - {fileID: 1164272234}
   - {fileID: 2037631377}
   m_Father: {fileID: 0}
-  m_RootOrder: 8
+  m_RootOrder: 10
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!61 &1260497862
 BoxCollider2D:
@@ -2549,7 +2551,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 10
+  m_RootOrder: 9
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1725823881
 GameObject:
