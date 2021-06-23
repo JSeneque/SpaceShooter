@@ -9,6 +9,8 @@ public class Asteroid : MonoBehaviour
     [SerializeField] private GameObject _explosionPrefab;
 
     private SpawnManager _spawnManager;
+    public CameraShake _cameraShake;
+    
     // Start is called before the first frame update
     void Start()
     {
@@ -32,10 +34,9 @@ public class Asteroid : MonoBehaviour
             Instantiate(_explosionPrefab, transform.position, Quaternion.identity);
             Destroy(other.gameObject);
             _spawnManager.StartSpawning();
+            StartCoroutine(_cameraShake.Shake(0.50f,0.15f));
             Destroy(this.gameObject, 1.0f);
         }
-        // check for laser collision
-        // instantiate explosion at the position of the asteroid
-        // destroy explosion after 3 seconds
+
     }
 }
