@@ -1683,11 +1683,11 @@ MonoBehaviour:
     type: 3}
   _heatSeekerPrefab: {fileID: 3875926120088051525, guid: b70aaaeac42040d4ca68f8e642ddc850,
     type: 3}
+  _burstPrefab: {fileID: 1874166044259248202, guid: 2bf5c8fd25c320240bc8984e27bc7253,
+    type: 3}
   _firepointOffset: 1.07
   _fireRate: 0.15
   _laserSFX: {fileID: 8300000, guid: 75676f361bdfeaf41a46623e95df3dbc, type: 3}
-  _isTripleShotActive: 0
-  _isHeatSeekerActive: 0
 --- !u!114 &1260497860
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1712,7 +1712,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1260497857}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: -2.49, z: 0}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 0.75, y: 0.75, z: 0.75}
   m_Children:
   - {fileID: 5585792204043656160}
@@ -2981,6 +2981,7 @@ MonoBehaviour:
   - {fileID: 8428553730007022105, guid: ac024a3f13e1b3043acb22943ad8abaf, type: 3}
   - {fileID: 8428553730007022105, guid: 1842cc98788c1674f9ae76466aad0232, type: 3}
   - {fileID: 3177220867608433957, guid: 4b35515ea6ba4854eb9bbd465825c17b, type: 3}
+  - {fileID: 3177220867608433957, guid: f700a673c331c3f4f89ea735c2841f18, type: 3}
   _enemySpawnRate: 8
   _powerSpawnRateMin: 10
   _powerSpawnRateMax: 20

@@ -10,7 +10,8 @@ public enum PowerUpType
     Shield,
     Ammo,
     Health,
-    HeatSeeker
+    HeatSeeker,
+    Burst
 };
 
 public class PowerUp : MonoBehaviour
@@ -94,6 +95,14 @@ public class PowerUp : MonoBehaviour
                         if (shootScript != null)
                         {
                             shootScript.HeatSeekerActive();
+                        }
+
+                        break;
+                    case PowerUpType.Burst:
+                        shootScript = other.GetComponent<PlayerShoot>();
+                        if (shootScript != null)
+                        {
+                            shootScript.BurstShootActive();
                         }
 
                         break;

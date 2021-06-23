@@ -7,6 +7,7 @@ public class PlayerShoot : MonoBehaviour
     [SerializeField] private GameObject _laserPrefab;
     [SerializeField] private GameObject _tripleShot;
     [SerializeField] private GameObject _heatSeekerPrefab;
+    [SerializeField] private GameObject _burstPrefab;
     [SerializeField] private float _firepointOffset = 1.07f;
     [SerializeField] 
     [Range(0,5)]
@@ -15,8 +16,9 @@ public class PlayerShoot : MonoBehaviour
     [SerializeField] private AudioClip _laserSFX;
     
     private float _canFire = -1f;
-    public bool _isTripleShotActive = false;
-    public bool _isHeatSeekerActive = false;
+    private bool _isTripleShotActive = false;
+    private bool _isHeatSeekerActive = false;
+    private bool _isBurstShotActive = false;
     private AudioSource _audioSource;
     private Player _player;
 
@@ -68,6 +70,12 @@ public class PlayerShoot : MonoBehaviour
             GameObject _laser = Instantiate(_heatSeekerPrefab, firePoint, Quaternion.identity);
             //_player.UpdateAmmo(-1);
         }
+        else if (_isBurstShotActive)
+        {
+            firePoint = new Vector3(transform.position.x, transform.position.y, transform.position.z);
+            Instantiate(_burstPrefab, firePoint, Quaternion.identity);
+            //_player.UpdateAmmo(-1);
+        }
         else
         {
             firePoint = new Vector3(transform.position.x, transform.position.y + _firepointOffset,
@@ -81,7 +89,7 @@ public class PlayerShoot : MonoBehaviour
     public void TripleShotActive()
     {
         _isTripleShotActive = true;
-        StartCoroutine(TripleShootPowerUpCoolDownRoutine(_isTripleShotActive));
+        StartCoroutine(TripleShotPowerUpCoolDownRoutine(_isTripleShotActive));
     }
     
     public void HeatSeekerActive()
@@ -90,11 +98,13 @@ public class PlayerShoot : MonoBehaviour
         StartCoroutine(HeatSeekerPowerUpCoolDownRoutine(_isHeatSeekerActive));
     }
 
-    // IEnumerator TripleShotPowerDownRoutine
-    // wait 5 second
-    // set te triple shot to false
+    public void BurstShootActive()
+    {
+        _isBurstShotActive = true;
+        StartCoroutine(BurstShotPowerUpCoolDownRoutine(_isBurstShotActive));
+    }
 
-    IEnumerator TripleShootPowerUpCoolDownRoutine(bool powerUp)
+    IEnumerator TripleShotPowerUpCoolDownRoutine(bool powerUp)
     {
         yield return new WaitForSeconds(5.0f);
 
@@ -106,5 +116,12 @@ public class PlayerShoot : MonoBehaviour
         yield return new WaitForSeconds(5.0f);
 
         _isHeatSeekerActive = false;
+    }
+    
+    IEnumerator BurstShotPowerUpCoolDownRoutine(bool powerUp)
+    {
+        yield return new WaitForSeconds(5.0f);
+
+        _isBurstShotActive = false;
     }
 }
