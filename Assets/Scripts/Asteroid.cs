@@ -9,7 +9,7 @@ public class Asteroid : MonoBehaviour
     [SerializeField] private GameObject _explosionPrefab;
 
     private SpawnManager _spawnManager;
-    public CameraShake _cameraShake;
+    private CameraShake _cameraShake;
     
     // Start is called before the first frame update
     void Start()
@@ -18,6 +18,12 @@ public class Asteroid : MonoBehaviour
         if (_spawnManager == null)
         {
             Debug.LogError("Spawn Manager is missing");
+        }
+
+        _cameraShake = GameObject.Find("Main Camera").GetComponent<CameraShake>();
+        if (_cameraShake == null)
+        {
+            Debug.LogError("The main camera is missing the camera shake script");
         }
     }
 
