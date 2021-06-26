@@ -45,7 +45,11 @@ public class Enemy : MonoBehaviour
     void Update()
     {
         CalculateMovement();
+        Fire();
+    }
 
+    private void Fire()
+    {
         if (Time.time > _canFire && !_isDead)
         {
             _fireRate = Random.Range(3.0f, 7.0f);
