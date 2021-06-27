@@ -2972,7 +2972,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _enemyContainer: {fileID: 2058370866}
-  _enemyPrefab: {fileID: 2360148615460080020, guid: e10b6210d8dff6744bcfb8267c5d5c95,
+  _enemyPrefab: {fileID: 2360148615460080020, guid: 5a6ae128684cd8241a945fe3d7225817,
     type: 3}
   _powerUps:
   - {fileID: 3177220867608433957, guid: 40b4429a6604cdf4a84af579192edb7a, type: 3}
