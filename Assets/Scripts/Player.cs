@@ -15,6 +15,7 @@ public class Player : MonoBehaviour
     private bool _isShieldActive;
     private UIManager _uIManager;
     private int _ammoCount;
+    private int _maxAmmo = 50;
     
 
     private void Start()
@@ -78,6 +79,9 @@ public class Player : MonoBehaviour
         if (_ammoCount < 0)
         {
             _ammoCount = 0;
+        } else if (_ammoCount > _maxAmmo)
+        {
+            _ammoCount = _maxAmmo;
         }
         
         _uIManager.UpdateAmmoText(_ammoCount);
