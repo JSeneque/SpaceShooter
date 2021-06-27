@@ -2,11 +2,19 @@
 using UnityEngine;
 using Random = UnityEngine.Random;
 
+public enum EnemyMovementType
+{
+    Downwards,
+    MoveRight,
+    MoveLeft
+}
+
 public class Enemy : MonoBehaviour
 {
     [SerializeField] private float _moveSpeed = 4.0f;
     [SerializeField] private AudioClip _explosionAudioClip;
     [SerializeField] private GameObject _laserPrefab;
+    [SerializeField] private EnemyMovementType _movementType;
     
     private Player _player;
     private Animator _animator;
@@ -15,6 +23,7 @@ public class Enemy : MonoBehaviour
     private float _canFire = -1.0f;
     private bool _isDead;
     private bool _targetlocked = false;
+    private bool _onScreen = false;
 
     private void Start()
     {
@@ -45,6 +54,7 @@ public class Enemy : MonoBehaviour
     void Update()
     {
         CalculateMovement();
+        CheckOnScreen();
         Fire();
     }
 
@@ -67,12 +77,38 @@ public class Enemy : MonoBehaviour
 
     private void CalculateMovement()
     {
-        transform.Translate(Vector3.down * _moveSpeed * Time.deltaTime);
-
+        if (_movementType == EnemyMovementType.Downwards)
+        {
+            transform.Translate(Vector3.down * _moveSpeed * Time.deltaTime);
+        }
+        else if (_movementType == EnemyMovementType.MoveRight)
+        {
+            transform.Translate(Vector3.right * _moveSpeed * Time.deltaTime);
+        }
+        else if (_movementType == EnemyMovementType.MoveLeft)
+        {
+            transform.Translate(Vector3.left * _moveSpeed * Time.deltaTime);
+        }
+        
         if (transform.position.y < -4.5f)
         {
             float newXPosition = Random.Range(-8.0f, 8.0f);
             transform.position = new Vector3(newXPosition, 10.0f, transform.position.z);
+        }
+
+        if ((transform.position.x > 10.0f || transform.position.x < -10.0f) && _onScreen)
+        {
+            Destroy(this.gameObject);
+        }
+        
+        
+    }
+
+    private void CheckOnScreen()
+    {
+        if (transform.position.x < 10.0f && transform.position.x > -10.0f)
+        {
+            _onScreen = true;
         }
     }
 
