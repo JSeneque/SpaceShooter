@@ -169,4 +169,14 @@ public class Enemy : MonoBehaviour
     {
         return _targetlocked;
     }
+
+    public void Spawn()
+    {
+        this.gameObject.SetActive(true);
+    }
+
+    public bool IsDead()
+    {
+        return _isDead;
+    }
 }

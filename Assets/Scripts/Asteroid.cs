@@ -8,17 +8,19 @@ public class Asteroid : MonoBehaviour
     [SerializeField] private float _rotateSpeed = 3.0f;
     [SerializeField] private GameObject _explosionPrefab;
 
-    private SpawnManager _spawnManager;
+    public event EventHandler OnAsteroidDestroyed;
+    
+    //private SpawnManager _spawnManager;
     private CameraShake _cameraShake;
     
     // Start is called before the first frame update
     void Start()
     {
-        _spawnManager = GameObject.Find("SpawnManager").GetComponent<SpawnManager>();
-        if (_spawnManager == null)
-        {
-            Debug.LogError("Spawn Manager is missing");
-        }
+        // _spawnManager = GameObject.Find("SpawnManager").GetComponent<SpawnManager>();
+        // if (_spawnManager == null)
+        // {
+        //     Debug.LogError("Spawn Manager is missing");
+        // }
 
         _cameraShake = GameObject.Find("Main Camera").GetComponent<CameraShake>();
         if (_cameraShake == null)
@@ -39,7 +41,9 @@ public class Asteroid : MonoBehaviour
         {
             Instantiate(_explosionPrefab, transform.position, Quaternion.identity);
             Destroy(other.gameObject);
-            _spawnManager.StartSpawning();
+            //_spawnManager.StartSpawning();
+            Debug.Log("Asteroid Destroyed!");
+            OnAsteroidDestroyed?.Invoke(this, EventArgs.Empty);
             StartCoroutine(_cameraShake.Shake(0.50f,0.15f));
             Destroy(this.gameObject, 1.0f);
         }
