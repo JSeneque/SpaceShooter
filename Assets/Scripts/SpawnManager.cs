@@ -13,17 +13,24 @@ public class SpawnManager : MonoBehaviour
     //[SerializeField] private PowerUpType powerUp;
 
     private bool _stopSpawning = false;
+    private Asteroid _asteroid;
 
     // Start is called before the first frame update
     void Start()
     {
-
+        _asteroid = GameObject.Find("Asteroid").GetComponent<Asteroid>();
+        if (_asteroid == null)
+        {
+            Debug.LogError("Asteroid script is missing");
+        }
+        
+        _asteroid.OnAsteroidDestroyed += _asteroid_OnAsteroidDestroyed;
     }
 
-    public void StartSpawning()
+    private void _asteroid_OnAsteroidDestroyed(object sender, System.EventArgs e)
     {
-        StartCoroutine(SpawnEnemyRoutine());
         StartCoroutine(SpawnPowerUpRoutine());
+        _asteroid.OnAsteroidDestroyed -= _asteroid_OnAsteroidDestroyed;
     }
 
     IEnumerator SpawnEnemyRoutine()
