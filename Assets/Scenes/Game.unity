@@ -4268,7 +4268,6 @@ MonoBehaviour:
     _delayTimer: 2
     _state: 0
     _waveDescription: {fileID: 0}
-  currentWave: 0
 --- !u!1 &1987694447
 GameObject:
   m_ObjectHideFlags: 0

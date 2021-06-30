@@ -1,7 +1,4 @@
-﻿using System;
-using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
+﻿using UnityEngine;
 using UnityEngine.UI;
 public enum State
 {
@@ -16,7 +13,7 @@ public class WaveManager : MonoBehaviour
 
     private Asteroid _asteroid;
 
-    public int currentWave = 0;
+    private int currentWave = 0;
     private void Start()
     {
         _asteroid = GameObject.Find("Asteroid").GetComponent<Asteroid>();
@@ -41,22 +38,22 @@ public class WaveManager : MonoBehaviour
     
     private void Update()
     {
-     if (_waves[currentWave].GetState() == State.Active)
-     {
-         _waves[currentWave].Update();
-     }
-     else if (_waves[currentWave].GetState() == State.Completed)
-     {
-         if (_waves.Length == currentWave + 1)
+         if (_waves[currentWave].GetState() == State.Active)
          {
-             Debug.Log("Bring on the boss!");
+             _waves[currentWave].Update();
          }
-         else
+         else if (_waves[currentWave].GetState() == State.Completed)
          {
-             currentWave++;
-             _waves[currentWave].SetActiveState();
+             if (_waves.Length == currentWave + 1)
+             {
+                 Debug.Log("Bring on the boss!");
+             }
+             else
+             {
+                 currentWave++;
+                 _waves[currentWave].SetActiveState();
+             }
          }
-     }
     }
 
     [System.Serializable]
