@@ -53,7 +53,8 @@ public class Enemy : MonoBehaviour
 
     void Update()
     {
-        CalculateMovement();
+        Movement();
+        ScreenWrapping();
         CheckOnScreen();
         Fire();
     }
@@ -75,7 +76,7 @@ public class Enemy : MonoBehaviour
         }
     }
 
-    private void CalculateMovement()
+    private void Movement()
     {
         if (_movementType == EnemyMovementType.Downwards)
         {
@@ -89,7 +90,10 @@ public class Enemy : MonoBehaviour
         {
             transform.Translate(Vector3.left * _moveSpeed * Time.deltaTime);
         }
-        
+    }
+
+    private void ScreenWrapping()
+    {
         if (transform.position.y < -4.5f)
         {
             float newXPosition = Random.Range(-8.0f, 8.0f);
@@ -98,11 +102,20 @@ public class Enemy : MonoBehaviour
 
         if ((transform.position.x > 10.0f || transform.position.x < -10.0f) && _onScreen)
         {
-            Destroy(this.gameObject);
+            float newYPosition = Random.Range(0.0f, 5.0f);
+
+            if (transform.position.x > 10.0f)
+            {
+                transform.position = new Vector3(-10.0f, newYPosition, transform.position.z);
+            }
+            else
+            {
+                transform.position = new Vector3(10.0f, newYPosition, transform.position.z);
+            }
+            
         }
-        
-        
     }
+    
 
     private void CheckOnScreen()
     {
