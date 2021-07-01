@@ -4417,6 +4417,7 @@ MonoBehaviour:
   - {fileID: 8428553730007022105, guid: 1842cc98788c1674f9ae76466aad0232, type: 3}
   - {fileID: 3177220867608433957, guid: 4b35515ea6ba4854eb9bbd465825c17b, type: 3}
   - {fileID: 3177220867608433957, guid: f700a673c331c3f4f89ea735c2841f18, type: 3}
+  - {fileID: 8428553730007022105, guid: 374212e77804a6248b35f79b2b2ce219, type: 3}
   _enemySpawnRate: 8
   _powerSpawnRateMin: 10
   _powerSpawnRateMax: 20

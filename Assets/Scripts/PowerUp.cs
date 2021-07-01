@@ -11,7 +11,8 @@ public enum PowerUpType
     Ammo,
     Health,
     HeatSeeker,
-    Burst
+    Burst,
+    Negative
 };
 
 public class PowerUp : MonoBehaviour
@@ -104,7 +105,13 @@ public class PowerUp : MonoBehaviour
                         {
                             shootScript.BurstShootActive();
                         }
-
+                        break;
+                    case PowerUpType.Negative:
+                        shootScript = other.GetComponent<PlayerShoot>();
+                        if (shootScript != null)
+                        {
+                            shootScript.DisableWeapons();
+                        }
                         break;
                     default:
                         Debug.Log("Default value");
