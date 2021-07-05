@@ -59,7 +59,7 @@ public class WaveManager : MonoBehaviour
     [System.Serializable]
     private class Wave
     {
-        [SerializeField] private Enemy[] _enemyArray;
+        [SerializeField] private EnemyBase[] _enemyArray;
         [SerializeField] private float _delayTimer;
         [SerializeField] private State _state = State.Waiting;
         [SerializeField] private Text _waveDescription;
@@ -84,9 +84,9 @@ public class WaveManager : MonoBehaviour
         
         public void SpawnEnemies()
         {
-            foreach (Enemy enemy in _enemyArray)
+            foreach (EnemyBase enemy in _enemyArray)
             {
-                enemy.GetComponent<Enemy>().Spawn();
+                enemy.GetComponent<EnemyBase>().Spawn();
             }
         }
     

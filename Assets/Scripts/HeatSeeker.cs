@@ -16,7 +16,7 @@ public class HeatSeeker : MonoBehaviour
     private WaitForSeconds heatSeekUpdate = new WaitForSeconds(0.5f);
     private Collider2D[] enemies = new Collider2D[25];
     private float nearestEnemyDistance;
-    private Enemy nearestEnemy;
+    private EnemyBase nearestEnemy;
     private Vector2 enemyDirection = Vector2.zero;
     private void OnEnable()
     {
@@ -46,12 +46,11 @@ public class HeatSeeker : MonoBehaviour
         while (true)
         {
             enemies = Physics2D.OverlapCircleAll(transform.position,detectionZone, (1 << 9));
-            //Debug.Log("Number of Entities: " + numOfEntities);
             nearestEnemyDistance = detectionZone;
             
             foreach(var entity in enemies)
             {
-                 if (entity.gameObject.TryGetComponent(out Enemy enemy) )
+                 if (entity.gameObject.TryGetComponent(out EnemyBase enemy) )
                  {
                      if (!enemy.IsEnemyLockedOn())
                      {
@@ -59,7 +58,6 @@ public class HeatSeeker : MonoBehaviour
 
                          if (nearestEnemyDistance > distance)
                          {
-                             //Debug.Log("Enemy found!");
                              nearestEnemy = enemy;
                              nearestEnemyDistance = distance;
                              enemy.LockOnEnemy();

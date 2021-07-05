@@ -53,5 +53,10 @@ public class Laser : MonoBehaviour
         } 
         
     }
+
+    public bool GetIsPlayer()
+    {
+        return _isPlayer;
+    }
     
 }

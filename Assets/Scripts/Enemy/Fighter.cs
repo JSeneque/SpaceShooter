@@ -2,29 +2,9 @@
 using UnityEngine;
 using Random = UnityEngine.Random;
 
-public enum EnemyMovementType
-{
-    Downwards,
-    MoveRight,
-    MoveLeft
-}
 
-public class Enemy : MonoBehaviour
+public class Fighter : EnemyBase
 {
-    [SerializeField] private float _moveSpeed = 4.0f;
-    [SerializeField] private AudioClip _explosionAudioClip;
-    [SerializeField] private GameObject _laserPrefab;
-    [SerializeField] private EnemyMovementType _movementType;
-    
-    private Player _player;
-    private Animator _animator;
-    private AudioSource _audioSource;
-    private float _fireRate = 3.0f;
-    private float _canFire = -1.0f;
-    private bool _isDead;
-    private bool _targetlocked = false;
-    private bool _onScreen = false;
-
     private void Start()
     {
         _player = GameObject.Find("Player").GetComponent<Player>();
@@ -65,13 +45,13 @@ public class Enemy : MonoBehaviour
         {
             _fireRate = Random.Range(3.0f, 7.0f);
             _canFire = Time.time + _fireRate;
-            GameObject laserGO = Instantiate(_laserPrefab, transform.position, Quaternion.identity);
+            GameObject laserGO = Instantiate(_projectilePrefab, _firePoint.position, Quaternion.identity);
             Laser[] lasers = laserGO.GetComponentsInChildren<Laser>();
 
-            foreach (var laser in lasers)
-            {
-                laser.SetIsPlayer(false);
-            }
+             foreach (var laser in lasers)
+             {
+                 laser.SetIsPlayer(false);
+             }
 
         }
     }
@@ -116,80 +96,11 @@ public class Enemy : MonoBehaviour
         }
     }
     
-
     private void CheckOnScreen()
     {
         if (transform.position.x < 10.0f && transform.position.x > -10.0f)
         {
             _onScreen = true;
         }
-    }
-
-    private void OnTriggerEnter2D(Collider2D other)
-    {
-        if (other.tag == "Player")
-        {
-            var player = other.GetComponent<Player>();
-
-            if (player != null)
-            {
-                player.Damage();
-            }
-            OnEnemyDestroyAnimation();
-            
-        }
-
-        if(other.tag == "Laser")
-        {
-            Destroy(other);
-            // add 10 to the score
-            if (_player != null)
-            {
-                _player.AddScore(10);
-            }
-            OnEnemyDestroyAnimation();
-        }
-        
-        if(other.tag == "Heat Seeker")
-        {
-            Destroy(other);
-            // add 10 to the score
-            if (_player != null)
-            {
-                _player.AddScore(10);
-            }
-            //OnEnemyDestroyAnimation();
-        }
-
-    }
-    
-    private void OnEnemyDestroyAnimation()
-    {
-        _isDead = true;
-        _animator.SetTrigger("OnEnemyDeath");
-        _moveSpeed = 0.5f;
-        _audioSource.Play();
-        Destroy(GetComponent<Collider2D>());
-        Destroy(this.gameObject, 2.8f);
-    }
-
-    public void LockOnEnemy()
-    {
-        _targetlocked = true;
-    }
-
-    public bool IsEnemyLockedOn()
-    {
-        return _targetlocked;
-    }
-
-    public void Spawn()
-    {
-        this.gameObject.SetActive(true);
-    }
-
-    public bool IsDead()
-    {
-        return _isDead;
     }
 }
