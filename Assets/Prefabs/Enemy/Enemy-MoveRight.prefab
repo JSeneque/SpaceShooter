@@ -29,7 +29,7 @@ Transform:
   m_GameObject: {fileID: 2360148615460080020}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 0.5, y: 0.5, z: 0.5}
+  m_LocalScale: {x: 0.4, y: 0.4, z: 0.4}
   m_Children:
   - {fileID: 6457674960190239484}
   - {fileID: 2363302331067866973}
@@ -51,6 +51,7 @@ MonoBehaviour:
   _moveSpeed: 4
   _firePoint: {fileID: 2363302331067866973}
   _explosionAudioClip: {fileID: 8300000, guid: a885c043fab7e46438bba03ba9dab6bc, type: 3}
+  _explosionPrefab: {fileID: 0}
   _projectilePrefab: {fileID: 5346602171621386531, guid: ea1bebebedd2d4f48b583c69e628104e,
     type: 3}
   _movementType: 1
