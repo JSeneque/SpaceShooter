@@ -10,7 +10,7 @@ public class RapidFighter : EnemyBase
     // [SerializeField] private Transform _firePoint;
     // [SerializeField] private float _fireRate = 1.0f;
     // [SerializeField] private GameObject _projectilePrefab;
-     [SerializeField] private GameObject _explosionPrefab;
+     
      [SerializeField] private float _fireRange = 5.0f;
      [SerializeField] private float _delayBetweenShooting = 3.0f;
      [SerializeField] private int _numOfShots = 5;

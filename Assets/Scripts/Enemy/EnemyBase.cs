@@ -1,7 +1,4 @@
-﻿using System;
-using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
+﻿using UnityEngine;
 
 public enum EnemyMovementType
 {
@@ -10,11 +7,13 @@ public enum EnemyMovementType
     MoveLeft
 }
 
+
 public class EnemyBase : MonoBehaviour
 {
     [SerializeField] protected float _moveSpeed = 4.0f;
     [SerializeField] protected Transform _firePoint;
     [SerializeField] protected AudioClip _explosionAudioClip;
+    [SerializeField] protected GameObject _explosionPrefab;
     [SerializeField] protected GameObject _projectilePrefab;
     [SerializeField] protected EnemyMovementType _movementType;
     [SerializeField] protected float _fireRate = 3.0f;
@@ -33,6 +32,16 @@ public class EnemyBase : MonoBehaviour
         if (_player == null)
         {
             Debug.LogError("Player script or player could note found");
+        }
+        
+        _audioSource = GetComponent<AudioSource>();
+        if (_audioSource == null)
+        {
+            Debug.LogError("Audio Source is NULL on Enemy");
+        }
+        else
+        {
+            _audioSource.clip = _explosionAudioClip;
         }
     }
 
