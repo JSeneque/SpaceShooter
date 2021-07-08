@@ -3061,6 +3061,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: Rammer (2)
       objectReference: {fileID: 0}
+    - target: {fileID: 8958507447614166219, guid: 44f161e26a484ad4a9f66f88a123194d,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 44f161e26a484ad4a9f66f88a123194d, type: 3}
 --- !u!114 &1233244775 stripped
@@ -5183,6 +5188,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: Rammer (1)
       objectReference: {fileID: 0}
+    - target: {fileID: 8958507447614166219, guid: 44f161e26a484ad4a9f66f88a123194d,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 44f161e26a484ad4a9f66f88a123194d, type: 3}
 --- !u!4 &2138157233 stripped
@@ -5444,6 +5454,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: Rammer
+      objectReference: {fileID: 0}
+    - target: {fileID: 8958507447614166219, guid: 44f161e26a484ad4a9f66f88a123194d,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 44f161e26a484ad4a9f66f88a123194d, type: 3}
