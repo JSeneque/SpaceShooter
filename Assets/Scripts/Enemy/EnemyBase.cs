@@ -17,6 +17,7 @@ public class EnemyBase : MonoBehaviour
     [SerializeField] protected GameObject _projectilePrefab;
     [SerializeField] protected EnemyMovementType _movementType;
     [SerializeField] protected float _fireRate = 3.0f;
+    [SerializeField] protected int _lives = 1;
     
     protected Player _player;
     protected Animator _animator;
@@ -25,6 +26,7 @@ public class EnemyBase : MonoBehaviour
     protected bool _isDead;
     protected bool _targetlocked = false;
     protected bool _onScreen = false;
+    public bool _offScreen;
 
     private void Start()
     {
@@ -42,6 +44,16 @@ public class EnemyBase : MonoBehaviour
         else
         {
             _audioSource.clip = _explosionAudioClip;
+        }
+    }
+
+    private void Damage()
+    {
+        _lives--;
+        
+        if (_lives <= 0)
+        {
+            OnEnemyDestroyAnimation();
         }
     }
 
@@ -70,20 +82,23 @@ public class EnemyBase : MonoBehaviour
         if (other.tag == "Player")
         {
             _player.Damage();
-            OnEnemyDestroyAnimation();
+            //OnEnemyDestroyAnimation();
+            Damage();
         }
 
         if(other.tag == "Laser")
         {
-            if (other.GetComponent<Laser>().GetIsPlayer())
+            if (other.GetComponent<Laser>().GetLaserType() == LaserType.Player)
             {
-                OnEnemyDestroyAnimation();
+                //OnEnemyDestroyAnimation();
+                Damage();
             }
         }
         
         if(other.tag == "Heat Seeker")
         {
-            OnEnemyDestroyAnimation();
+            //OnEnemyDestroyAnimation();
+            Damage();
         }
     }
 
@@ -96,5 +111,21 @@ public class EnemyBase : MonoBehaviour
         _audioSource.Play();
         Destroy(GetComponent<Collider2D>());
         Destroy(this.gameObject, 2.8f);
+    }
+    
+    protected void CheckOnScreen()
+    {
+        if (transform.position.x < 10.0f && transform.position.x > -10.0f)
+        {
+            _onScreen = true;
+        }
+    }
+
+    protected void CheckOffScreen()
+    {
+        if (transform.position.y < -5.0f)
+        {
+            _offScreen = true;
+        }
     }
 }

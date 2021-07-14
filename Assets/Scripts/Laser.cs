@@ -1,24 +1,43 @@
 ﻿using System;
 using UnityEngine;
 
+public enum LaserType
+{
+    Player,
+    FireDown,
+    TowardsTarget
+}
+
 public class Laser : MonoBehaviour
 {
     [SerializeField] private float _moveSpeed = 8f;
     [SerializeField] private float _upperBounds = 7f;
+    [SerializeField] private float _leftBounds = -10f;
+    [SerializeField] private float _rightBounds = 10.5f;
     [SerializeField] private float _lowerBounds = -5f;
-    [SerializeField] private bool _isPlayer = true;
+    [SerializeField] private LaserType _laserType;
+    [SerializeField] private float angularSpeed = 360f;
+    
+    private Vector3 _targetPosition = Vector3.zero;
+    private Vector3 _targetDirection = Vector3.zero;
+    private bool _targetLocked = false;
+    private Player _player;
+    
+    private void OnEnable() => _player = GameObject.Find("Player").GetComponent<Player>();
+    
+    public LaserType GetLaserType() => _laserType;
+    public void SetLaserType(LaserType value) => _laserType = value;
+
     void Update()
     {
-        if (_isPlayer)
-        {
-            transform.Translate(Vector3.up * _moveSpeed * Time.deltaTime);
-        }
-        else
-        {
-            transform.Translate(Vector3.down * _moveSpeed * Time.deltaTime);
-        }
+        Movement();
+        CheckBounds();
+    }
 
-        if (transform.position.y > _upperBounds || transform.position.y < _lowerBounds)
+    private void CheckBounds()
+    {
+        if (transform.position.y > _upperBounds || transform.position.y < _lowerBounds ||
+            transform.position.x > _rightBounds || transform.position.x < _leftBounds)
         {
             if (transform.parent != null)
             {
@@ -29,34 +48,44 @@ public class Laser : MonoBehaviour
         }
     }
 
-    public void SetIsPlayer(bool value)
+    private void Movement()
     {
-        _isPlayer = value;
+        switch (_laserType)
+        {
+            case LaserType.Player:
+                transform.Translate(Vector3.up * _moveSpeed * Time.deltaTime);
+                break;
+            case LaserType.FireDown:
+                transform.Translate(Vector3.down * _moveSpeed * Time.deltaTime);
+                break;
+            case LaserType.TowardsTarget:
+                if (!_targetLocked && _player != null)
+                {
+                    _targetLocked = true;
+                    _targetPosition = _player.transform.position;
+                }
+
+                if (_targetPosition != null)
+                {
+                    _targetDirection = (_targetPosition - transform.position).normalized;
+                    transform.Rotate(0f, 0f,
+                        Vector3.Cross(_targetDirection, transform.up).z * -1 * angularSpeed * Time.deltaTime);
+                }
+
+                transform.Translate(Vector3.up * _moveSpeed * Time.deltaTime);
+                break;
+        }
     }
 
     private void OnTriggerEnter2D(Collider2D other)
     {
-        // if collider with player, destroy player and laser
-        // if an enemy laser
-        //  if collider with enemy
-        //      nothing happens
-        if (other.tag == "Player" && !_isPlayer)
+        if (other.tag == "Player" && _laserType != LaserType.Player)
         {
-            Player player = other.GetComponent<Player>();
-            if (player == null)
+            if (_player != null)
             {
-                Debug.LogError("Player missing Player script");
+                _player.Damage();
             }
-            player.Damage();
-            
             Destroy(gameObject);
-        } 
-        
+        }
     }
-
-    public bool GetIsPlayer()
-    {
-        return _isPlayer;
-    }
-    
 }

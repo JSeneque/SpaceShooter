@@ -5307,30 +5307,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Asteroid
       objectReference: {fileID: 0}
-    - target: {fileID: 1068121079957472579, guid: a2ba9adb7546a6942be822559201e389,
-        type: 3}
-      propertyPath: m_IsActive
-      value: 1
-      objectReference: {fileID: 0}
     - target: {fileID: 1299766869075715906, guid: a2ba9adb7546a6942be822559201e389,
         type: 3}
       propertyPath: m_RootOrder
       value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 1299766869075715906, guid: a2ba9adb7546a6942be822559201e389,
-        type: 3}
-      propertyPath: m_LocalScale.x
-      value: 0.5
-      objectReference: {fileID: 0}
-    - target: {fileID: 1299766869075715906, guid: a2ba9adb7546a6942be822559201e389,
-        type: 3}
-      propertyPath: m_LocalScale.y
-      value: 0.5
-      objectReference: {fileID: 0}
-    - target: {fileID: 1299766869075715906, guid: a2ba9adb7546a6942be822559201e389,
-        type: 3}
-      propertyPath: m_LocalScale.z
-      value: 0.5
       objectReference: {fileID: 0}
     - target: {fileID: 1299766869075715906, guid: a2ba9adb7546a6942be822559201e389,
         type: 3}

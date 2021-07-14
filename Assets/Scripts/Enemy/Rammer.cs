@@ -1,4 +1,5 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using TreeEditor;
 using UnityEngine;
@@ -57,21 +58,41 @@ public class Rammer : EnemyBase
     {
         if(other.tag == "Player")
         {
-            Instantiate(_explosionPrefab, transform.position, Quaternion.identity);
-            _isDead = true;
-            // add 10 to the score
-            if (_player != null)
-            {
-                _player.AddScore(10);
-            }
-
-            _player.Damage();
-            _moveSpeed = 0;
-            _audioSource.Play();
-            Destroy(GetComponent<Collider2D>());
-            Destroy(gameObject, 2.5f);
-            
+            Damage();
         }
+
+        if (other.tag == "Laser" || other.tag == "Heat Seeker")
+        {
+            Damage();
+            Destroy(other.gameObject);
+        }
+    }
+    
+    private void Damage()
+    {
+        _lives--;
+        
+        if (_lives <= 0)
+        {
+            OnEnemyDestroy();
+        }
+    }
+
+    private void OnEnemyDestroy()
+    {
+        Instantiate(_explosionPrefab, transform.position, Quaternion.identity);
+        _isDead = true;
+        // add 10 to the score
+        if (_player != null)
+        {
+            _player.AddScore(10);
+        }
+
+        _player.Damage();
+        _moveSpeed = 0;
+        _audioSource.Play();
+        Destroy(GetComponent<Collider2D>());
+        Destroy(gameObject, 2.5f);
     }
 
     private void OnDrawGizmosSelected()
@@ -79,4 +100,5 @@ public class Rammer : EnemyBase
         Gizmos.color = Color.red;
         Gizmos.DrawWireSphere(transform.position, _rammingRange);
     }
+    
 }

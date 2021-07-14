@@ -16,6 +16,7 @@ public class Player : MonoBehaviour
     private UIManager _uIManager;
     private int _ammoCount;
     private int _maxAmmo = 50;
+    private bool _isDead = false;
     
 
     private void Start()
@@ -47,6 +48,7 @@ public class Player : MonoBehaviour
             {
                 _spawnManager.OnPlayerDeath();
                 Instantiate(_explosionPrefab, transform.position, Quaternion.identity);
+                _isDead = true;
                 Destroy(this.gameObject);
             }  
         }
@@ -124,5 +126,10 @@ public class Player : MonoBehaviour
             _leftEngine.SetActive(false);
             _rightEngine.SetActive(false);
         }
+    }
+
+    public bool GetIsDead()
+    {
+        return _isDead;
     }
 }

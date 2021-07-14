@@ -50,7 +50,7 @@ public class Fighter : EnemyBase
 
              foreach (var laser in lasers)
              {
-                 laser.SetIsPlayer(false);
+                 laser.SetLaserType(LaserType.FireDown);
              }
 
         }
@@ -95,12 +95,5 @@ public class Fighter : EnemyBase
             
         }
     }
-    
-    private void CheckOnScreen()
-    {
-        if (transform.position.x < 10.0f && transform.position.x > -10.0f)
-        {
-            _onScreen = true;
-        }
-    }
+
 }
