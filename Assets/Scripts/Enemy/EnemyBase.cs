@@ -18,6 +18,8 @@ public class EnemyBase : MonoBehaviour
     [SerializeField] protected EnemyMovementType _movementType;
     [SerializeField] protected float _fireRate = 3.0f;
     [SerializeField] protected int _lives = 1;
+    [SerializeField] protected bool _horizontalWrapping;
+    [SerializeField] protected bool _verticalWrapping;
     
     protected Player _player;
     protected Animator _animator;
@@ -26,7 +28,11 @@ public class EnemyBase : MonoBehaviour
     protected bool _isDead;
     protected bool _targetlocked = false;
     protected bool _onScreen = false;
+    
+    protected float _direction = 0;
+    
     public bool _offScreen;
+    
 
     private void Start()
     {
@@ -82,7 +88,6 @@ public class EnemyBase : MonoBehaviour
         if (other.tag == "Player")
         {
             _player.Damage();
-            //OnEnemyDestroyAnimation();
             Damage();
         }
 
@@ -90,14 +95,12 @@ public class EnemyBase : MonoBehaviour
         {
             if (other.GetComponent<Laser>().GetLaserType() == LaserType.Player)
             {
-                //OnEnemyDestroyAnimation();
                 Damage();
             }
         }
         
         if(other.tag == "Heat Seeker")
         {
-            //OnEnemyDestroyAnimation();
             Damage();
         }
     }
@@ -127,5 +130,34 @@ public class EnemyBase : MonoBehaviour
         {
             _offScreen = true;
         }
+    }
+    
+    protected void ScreenWrapping()
+    {
+        if (transform.position.y < -5f && _verticalWrapping)
+        {
+            float newXPosition = Random.Range(-8.0f, 8.0f);
+            transform.position = new Vector3(newXPosition, 10.0f, transform.position.z);
+        }
+
+        if ((transform.position.x > 10.0f || transform.position.x < -10.0f) && _onScreen && _horizontalWrapping)
+        {
+            float newYPosition = Random.Range(0.0f, 5.0f);
+
+            if (transform.position.x > 10.0f)
+            {
+                transform.position = new Vector3(-10.0f, newYPosition, transform.position.z);
+            }
+            else
+            {
+                transform.position = new Vector3(10.0f, newYPosition, transform.position.z);
+            }
+            
+        }
+    }
+    
+    public void ChangeDirection(float value)
+    {
+        _direction = value;
     }
 }

@@ -61,6 +61,7 @@ public class Fighter : EnemyBase
         if (_movementType == EnemyMovementType.Downwards)
         {
             transform.Translate(Vector3.down * _moveSpeed * Time.deltaTime);
+            transform.Translate(Vector3.right * _direction * _moveSpeed * Time.deltaTime);
         }
         else if (_movementType == EnemyMovementType.MoveRight)
         {
@@ -72,28 +73,6 @@ public class Fighter : EnemyBase
         }
     }
 
-    private void ScreenWrapping()
-    {
-        if (transform.position.y < -4.5f)
-        {
-            float newXPosition = Random.Range(-8.0f, 8.0f);
-            transform.position = new Vector3(newXPosition, 10.0f, transform.position.z);
-        }
-
-        if ((transform.position.x > 10.0f || transform.position.x < -10.0f) && _onScreen)
-        {
-            float newYPosition = Random.Range(0.0f, 5.0f);
-
-            if (transform.position.x > 10.0f)
-            {
-                transform.position = new Vector3(-10.0f, newYPosition, transform.position.z);
-            }
-            else
-            {
-                transform.position = new Vector3(10.0f, newYPosition, transform.position.z);
-            }
-            
-        }
-    }
+    
 
 }

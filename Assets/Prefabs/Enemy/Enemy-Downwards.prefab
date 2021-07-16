@@ -56,6 +56,10 @@ MonoBehaviour:
     type: 3}
   _movementType: 0
   _fireRate: 3
+  _lives: 1
+  _horizontalWrapping: 0
+  _verticalWrapping: 1
+  _offScreen: 0
 --- !u!50 &8127416856000501854
 Rigidbody2D:
   serializedVersion: 4
