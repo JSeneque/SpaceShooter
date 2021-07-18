@@ -21,15 +21,36 @@ public class PowerUp : MonoBehaviour
     [SerializeField] private float _moveSpeed = 3.0f;
     [SerializeField] private float _lowerBound = -5.5f;
     [SerializeField] private AudioClip _audioClip;
+    [SerializeField] private float attractorSpeedModifier = 2.0f;
+
+    private bool _isAttracted = false;
+    private Player _player;
+
+    private void OnEnable()
+    {
+        _player = GameObject.Find("Player").GetComponent<Player>();
+
+        if (_player == null)
+        {
+            Debug.LogError("PowerUp - Player script is missing");
+        }
+    }
 
     // Update is called once per frame
     void Update()
     {
-        transform.Translate(Vector3.down * _moveSpeed * Time.deltaTime);
-
-        if (transform.position.y < _lowerBound)
+        if (_isAttracted && _player != null)
         {
-            Destroy(this.gameObject);
+            transform.position = Vector3.MoveTowards(transform.position, _player.transform.position, _moveSpeed * attractorSpeedModifier* Time.deltaTime);
+        }
+        else
+        {
+            transform.Translate(Vector3.down * _moveSpeed * Time.deltaTime);
+
+            if (transform.position.y < _lowerBound)
+            {
+                Destroy(this.gameObject);
+            }
         }
 
     }
@@ -122,5 +143,10 @@ public class PowerUp : MonoBehaviour
                 Destroy(this.gameObject);
             }
         }
+    }
+
+    public void BeingAttracted()
+    {
+        _isAttracted = true;
     }
 }

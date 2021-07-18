@@ -12,7 +12,7 @@ GameObject:
   - component: {fileID: 4649975973527519797}
   - component: {fileID: 1683052748146242365}
   - component: {fileID: 2182773253433682335}
-  m_Layer: 0
+  m_Layer: 11
   m_Name: HeatSeekerPowerUp
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -98,7 +98,7 @@ GameObject:
   - component: {fileID: 4298304322175417450}
   - component: {fileID: 5407440742685512949}
   - component: {fileID: 63020131021972601}
-  m_Layer: 0
+  m_Layer: 11
   m_Name: GFX
   m_TagString: Untagged
   m_Icon: {fileID: 0}

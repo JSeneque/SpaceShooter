@@ -13,7 +13,7 @@ GameObject:
   - component: {fileID: 6897512342185445234}
   - component: {fileID: 2287233841802091037}
   - component: {fileID: 6327971062587773441}
-  m_Layer: 0
+  m_Layer: 11
   m_Name: NegativePowerUp
   m_TagString: Untagged
   m_Icon: {fileID: 0}
