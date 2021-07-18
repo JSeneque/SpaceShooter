@@ -89,7 +89,7 @@ public class TurretFighter : EnemyBase
     
     private void Fire()
     {
-        if (isBehindPlayer)
+        if (isBehindPlayer && _player != null)
         {
             if (Time.time > _canFire && !_isDead)
             {

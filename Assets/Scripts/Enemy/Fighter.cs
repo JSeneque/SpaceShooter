@@ -41,7 +41,7 @@ public class Fighter : EnemyBase
 
     private void Fire()
     {
-        if (Time.time > _canFire && !_isDead)
+        if (Time.time > _canFire && !_isDead && _player != null)
         {
             _fireRate = Random.Range(3.0f, 7.0f);
             _canFire = Time.time + _fireRate;

@@ -56,7 +56,7 @@ public class RapidFighter : EnemyBase
     
     private void Fire()
     {
-        if (Time.time > _delayFire && !_isDead)
+        if (Time.time > _delayFire && !_isDead && _player != null)
         {
             if (Time.time > _canFire && !_isDead)
             {

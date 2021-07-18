@@ -9,19 +9,12 @@ public class Asteroid : MonoBehaviour
     [SerializeField] private GameObject _explosionPrefab;
 
     public event EventHandler OnAsteroidDestroyed;
-    
-    //private SpawnManager _spawnManager;
+
     private CameraShake _cameraShake;
     
     // Start is called before the first frame update
-    void Start()
+    void OnEnable()
     {
-        // _spawnManager = GameObject.Find("SpawnManager").GetComponent<SpawnManager>();
-        // if (_spawnManager == null)
-        // {
-        //     Debug.LogError("Spawn Manager is missing");
-        // }
-
         _cameraShake = GameObject.Find("Main Camera").GetComponent<CameraShake>();
         if (_cameraShake == null)
         {

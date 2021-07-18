@@ -23,14 +23,17 @@ public class Rammer : EnemyBase
 
     private void InRammingRange()
     {
-        float distance = Vector3.Distance(transform.position, _player.transform.position );
-        
-        if (!_isRamming)
+        if (_player != null)
         {
-            if (distance < _rammingRange)
+            float distance = Vector3.Distance(transform.position, _player.transform.position);
+
+            if (!_isRamming)
             {
-                _isRamming = true;
-                _playerPosition = _player.transform.position;
+                if (distance < _rammingRange)
+                {
+                    _isRamming = true;
+                    _playerPosition = _player.transform.position;
+                }
             }
         }
     }

@@ -50,30 +50,33 @@ public class Laser : MonoBehaviour
 
     private void Movement()
     {
-        switch (_laserType)
+        if (_player != null)
         {
-            case LaserType.Player:
-                transform.Translate(Vector3.up * _moveSpeed * Time.deltaTime);
-                break;
-            case LaserType.FireDown:
-                transform.Translate(Vector3.down * _moveSpeed * Time.deltaTime);
-                break;
-            case LaserType.TowardsTarget:
-                if (!_targetLocked && _player != null)
-                {
-                    _targetLocked = true;
-                    _targetPosition = _player.transform.position;
-                }
+            switch (_laserType)
+            {
+                case LaserType.Player:
+                    transform.Translate(Vector3.up * _moveSpeed * Time.deltaTime);
+                    break;
+                case LaserType.FireDown:
+                    transform.Translate(Vector3.down * _moveSpeed * Time.deltaTime);
+                    break;
+                case LaserType.TowardsTarget:
+                    if (!_targetLocked && _player != null)
+                    {
+                        _targetLocked = true;
+                        _targetPosition = _player.transform.position;
+                    }
 
-                if (_targetPosition != null)
-                {
-                    _targetDirection = (_targetPosition - transform.position).normalized;
-                    transform.Rotate(0f, 0f,
-                        Vector3.Cross(_targetDirection, transform.up).z * -1 * angularSpeed * Time.deltaTime);
-                }
+                    if (_targetPosition != null)
+                    {
+                        _targetDirection = (_targetPosition - transform.position).normalized;
+                        transform.Rotate(0f, 0f,
+                            Vector3.Cross(_targetDirection, transform.up).z * -1 * angularSpeed * Time.deltaTime);
+                    }
 
-                transform.Translate(Vector3.up * _moveSpeed * Time.deltaTime);
-                break;
+                    transform.Translate(Vector3.up * _moveSpeed * Time.deltaTime);
+                    break;
+            }
         }
     }
 

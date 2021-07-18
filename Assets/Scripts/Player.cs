@@ -12,15 +12,21 @@ public class Player : MonoBehaviour
     [SerializeField] private GameObject _explosionPrefab;
     
     private SpawnManager _spawnManager;
+    private CameraShake _cameraShake;
     private bool _isShieldActive;
     private UIManager _uIManager;
     private int _ammoCount;
     private int _maxAmmo = 50;
     private bool _isDead = false;
-    
 
-    private void Start()
+    void OnEnable()
     {
+        _cameraShake = GameObject.Find("Main Camera").GetComponent<CameraShake>();
+        if (_cameraShake == null)
+        {
+            Debug.LogError("The main camera is missing the camera shake script");
+        }
+        
         _spawnManager = GameObject.Find("SpawnManager").GetComponent<SpawnManager>();
         if (_spawnManager == null)
         {
@@ -41,7 +47,7 @@ public class Player : MonoBehaviour
         if (!_isShieldActive)
         {
             _lives--;
-
+            StartCoroutine(_cameraShake.Shake(0.50f,0.15f));
             UpdateShipDamage();
 
             if(_lives == 0)
